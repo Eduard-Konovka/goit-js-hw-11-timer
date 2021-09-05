@@ -1,5 +1,5 @@
 export default class CountdownTimer {
-  constructor({ selector, targetDate, erorTitle }) {
+  constructor({ selector, targetDate, errorTitle }) {
     this.refs = {
       clockDays: document.querySelector(`${selector} [data-value="days"]`),
       clockHours: document.querySelector(`${selector} [data-value="hours"]`),
@@ -7,7 +7,7 @@ export default class CountdownTimer {
       clockSecs: document.querySelector(`${selector} [data-value="secs"]`),
       title: document.querySelector(`${selector} .title`),
     }
-    this.erorTitle = erorTitle
+    this.errorTitle = errorTitle
 
     this.start(targetDate)
   }
@@ -38,7 +38,7 @@ export default class CountdownTimer {
       this.refs.clockHours.textContent = `⁂`
       this.refs.clockMins.textContent = `⁂`
       this.refs.clockSecs.textContent = `⁂`
-      this.refs.title.textContent = `${this.erorTitle}`
+      this.refs.title.textContent = `${this.errorTitle}`
 
       return
     }
