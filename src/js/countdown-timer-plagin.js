@@ -1,11 +1,13 @@
 export default class CountdownTimer {
-  constructor({ selector, targetDate }) {
+  constructor({ selector, targetDate, erorTitle }) {
     this.refs = {
       clockDays: document.querySelector(`${selector} [data-value="days"]`),
       clockHours: document.querySelector(`${selector} [data-value="hours"]`),
       clockMins: document.querySelector(`${selector} [data-value="mins"]`),
       clockSecs: document.querySelector(`${selector} [data-value="secs"]`),
+      title: document.querySelector(`${selector} .title`),
     }
+    this.erorTitle = erorTitle
 
     this.start(targetDate)
   }
@@ -31,6 +33,16 @@ export default class CountdownTimer {
   }
 
   start(targetDate) {
+    if (targetDate < Date.now()) {
+      this.refs.clockDays.textContent = `⁂`
+      this.refs.clockHours.textContent = `⁂`
+      this.refs.clockMins.textContent = `⁂`
+      this.refs.clockSecs.textContent = `⁂`
+      this.refs.title.textContent = `${this.erorTitle}`
+
+      return
+    }
+
     setInterval(() => {
       this.updateDate(this.getTimeComponents(targetDate - Date.now()))
     }, 1000)
