@@ -1,1 +1,1 @@
-export const actualYear = 2023
+export const actualYear = new Date().getFullYear()
